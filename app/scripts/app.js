@@ -14,21 +14,21 @@ angular
     $routeProvider
       .when('/', {        
         controller: 'DisplayCtrl',
-        templateUrl: 'display.html'        
+        templateUrl: 'views/display.html'        
       })
       .when('/new', {
-        templateUrl: 'form.html',
+        templateUrl: 'views/form.html',
         controller: 'CreateCtrl'
       })
       .when('/edit/:contactId',{
-        templateUrl: 'form.html',
+        templateUrl: 'views/form.html',
         controller: 'EditCtrl'
       })
       .otherwise({
         redirectTo: '/'
-      });
-  }])
-   .factory('Contacts', function() {
+      })
+    }])
+  .factory('Contacts', function() {
     var Contacts = {};
     Contacts = [ 
       {
@@ -45,36 +45,5 @@ angular
       }
     ];
     return Contacts;
-})
-  .controller('DisplayCtrl',function($scope,Contacts){
-    $scope.contacts = Contacts;
-  })
-  .controller('CreateCtrl', function($scope, $location, Contacts) {
-      $scope.save = function() {
-      Contacts.$add($scope.contact).then(function(data) {
-          $location.path('/');
-      });
-  };
-})
- 
-.controller('EditCtrl',function($scope, $location, $routeParams, Contacts) {
-        alert($routeParams);
-    var contactId = $routeParams.contactId,
-        contactIndex;
- 
-    $scope.contacts = Contacts;
-    contactIndex = $scope.contacts.$indexFor(contactId);
-    $scope.contact = $scope.contacts[contactIndex];
- 
-    $scope.destroy = function() {
-        $scope.contacts.$remove($scope.contact).then(function(data) {
-            $location.path('/');
-        });
-    };
- 
-    $scope.save = function() {
-        $scope.contacts.$save($scope.contact).then(function(data) {
-           $location.path('/');
-        });
-    };
 });
+    
