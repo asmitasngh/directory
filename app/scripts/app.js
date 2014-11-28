@@ -34,12 +34,14 @@ angular
       {
         name: "Tina Benko",
         contact_no: "991988980",
-        address: "NASA Scientist,abc,aaaa"
+        address: "NASA Scientist,abc,aaaa",
+        contactId:"1"
       },
       {
         name: "Asmita",
         contact_no: "991988980",
-        address: "NASA Scientist,abc,aaaa"
+        address: "NASA Scientist,abc,aaaa",
+        contactId: "2"
       }
     ];
     return Contacts;
@@ -48,16 +50,15 @@ angular
     $scope.contacts = Contacts;
   })
   .controller('CreateCtrl', function($scope, $location, Contacts) {
-    alert("hi");
-  $scope.save = function() {
+      $scope.save = function() {
       Contacts.$add($scope.contact).then(function(data) {
           $location.path('/');
       });
   };
 })
  
-.controller('EditCtrl',
-  function($scope, $location, $routeParams, Contacts) {
+.controller('EditCtrl',function($scope, $location, $routeParams, Contacts) {
+        alert($routeParams);
     var contactId = $routeParams.contactId,
         contactIndex;
  
