@@ -1,10 +1,9 @@
- alert("hi");
-'use strict';
+ 'use strict';
 
 angular
   .module('contactApp')
  	.controller('DisplayCtrl',function($scope,Contacts){
- 	  console.log(Contacts);
+ 	  // console.log(Contacts);
    	 $scope.contacts = Contacts;
     // .controller('DisplayCtrl', ['$scope', function($scope) {
     // $scope.contact = [];

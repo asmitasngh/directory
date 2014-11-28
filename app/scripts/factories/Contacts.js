@@ -1,7 +1,7 @@
-
 'use strict';
 
-angular.module('contactApp')
+angular
+  .module('contactApp')
 .factory('Contacts', function() {
     var Contacts = {};
     Contacts = [ 
@@ -20,4 +20,4 @@ angular.module('contactApp')
     ];
     return Contacts;
 });
- 
+    
