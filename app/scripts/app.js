@@ -9,29 +9,46 @@
  * Main module of the application.
  */
 angular
-  .module('contactApp', ['ngRoute'])
-  .config(function ($routeProvider) {
+  .module('contactApp', ['ngRoute'] )
+  .config(['$routeProvider',function($routeProvider){
     $routeProvider
-      .when('/', {
+      .when('/', {        
         controller: 'DisplayCtrl',
-        templateUrl: 'views/display.html'        
+        templateUrl: 'display.html'        
       })
       .when('/new', {
-        templateUrl: 'views/form.html',
+        templateUrl: 'form.html',
         controller: 'CreateCtrl'
       })
       .when('/edit/:contactId',{
-        templateUrl: 'views/form.html',
+        templateUrl: 'form.html',
         controller: 'EditCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
-  })
+  }])
+   .factory('Contacts', function() {
+    var Contacts = {};
+    Contacts = [ 
+      {
+        name: "Tina Benko",
+        contact_no: "991988980",
+        address: "NASA Scientist,abc,aaaa"
+      },
+      {
+        name: "Asmita",
+        contact_no: "991988980",
+        address: "NASA Scientist,abc,aaaa"
+      }
+    ];
+    return Contacts;
+})
   .controller('DisplayCtrl',function($scope,Contacts){
     $scope.contacts = Contacts;
   })
   .controller('CreateCtrl', function($scope, $location, Contacts) {
+    alert("hi");
   $scope.save = function() {
       Contacts.$add($scope.contact).then(function(data) {
           $location.path('/');
